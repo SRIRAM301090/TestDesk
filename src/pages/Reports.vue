@@ -1,11 +1,15 @@
 <template>
-  <q-page class="flex flex-center">
-
+  <q-page padding>
+      <h1>Reports</h1>
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'PageIndex'
+
 }
 </script>
+
+<style>
+
+</style>
