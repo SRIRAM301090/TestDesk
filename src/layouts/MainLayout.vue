@@ -17,6 +17,15 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer elevated>
+      <q-tabs v-model="tab" no-caps dense>
+        <q-tab name="reports" icon="summarize" label="Reports" />
+        <q-tab name="execute" icon="play_arrow" label="Execute" />
+        <q-tab name="keywords" icon="code" label="Keywords" />
+        <q-tab name="settings" icon="settings" label="Settings" />
+      </q-tabs>
+    </q-footer>
+
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -77,7 +86,8 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
-      essentialLinks: linksData
+      essentialLinks: linksData,
+      tab: 'mails'
     };
   }
 };
