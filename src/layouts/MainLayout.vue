@@ -3,6 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-btn
+          class="large-screen-only"
           flat
           dense
           round
@@ -11,23 +12,38 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="absolute-center">
           TestDesk
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-footer elevated>
+    <q-footer elevated class="small-screen-only">
       <q-tabs v-model="tab" no-caps dense>
-        <q-tab name="reports" icon="summarize" label="Reports" />
-        <q-tab name="execute" icon="play_arrow" label="Execute" />
-        <q-tab name="keywords" icon="code" label="Keywords" />
-        <q-tab name="settings" icon="settings" label="Settings" />
+        <q-route-tab
+          name="reports"
+          to="reports"
+          icon="summarize"
+          label="Reports"
+        />
+        <q-route-tab
+          name="keywords"
+          to="keywords"
+          icon="code"
+          label="Keywords"
+        />
+        <q-route-tab
+          name="settings"
+          to="settings"
+          icon="settings"
+          label="Settings"
+        />
       </q-tabs>
     </q-footer>
 
     <q-drawer
       v-model="leftDrawerOpen"
+      class="large-screen-only"
       show-if-above
       bordered
       content-class="bg-grey-1"
@@ -87,7 +103,7 @@ export default {
     return {
       leftDrawerOpen: false,
       essentialLinks: linksData,
-      tab: 'mails'
+      tab: "mails"
     };
   }
 };
