@@ -74,25 +74,25 @@ const linksData = [
     title: "Reports",
     caption: "View Test Reports",
     icon: "summarize",
-    link: "reports"
+    link: "/reports"
   },
   {
     title: "Execute",
     caption: "Execute Testcase",
     icon: "play_arrow",
-    link: "execute"
+    link: "/execute"
   },
   {
     title: "Keywords",
     caption: "Keyword Explorer",
     icon: "code",
-    link: "keywords"
+    link: "/keywords"
   },
   {
     title: "Settings",
     caption: "App Settings",
     icon: "settings",
-    link: "settings"
+    link: "/settings"
   }
 ];
 

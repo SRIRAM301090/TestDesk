@@ -4,18 +4,19 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/', component: () => import('pages/Index.vue') },
-      { path: 'execute', component: () => import('pages/Execute.vue') },
-      { path: 'keywords', component: () => import('pages/Keywords.vue') },
-      { path: 'reports', component: () => import('pages/Reports.vue') },
-      { path: 'settings', component: () => import('pages/Settings.vue') },
+      { path: '/', component: () => import('src/pages/PageHome.vue') },
+      { path: '/execute', component: () => import('src/pages/PageExecute.vue') },
+      { path: '/keywords/:id', component: () => import('src/pages/PageKeywords.vue'), props : true },
+      { path: '/reports', component: () => import('src/pages/PageReports.vue') },
+      { path: '/settings', component: () => import('src/pages/PageSettings.vue') },
+      { path: '/auth', component: () => import('src/pages/PageAuth.vue') },
     ]
   },
 
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: '*',
+    path: '/:notFound(.*)',
     component: () => import('pages/Error404.vue')
   }
 ]

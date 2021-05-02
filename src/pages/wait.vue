@@ -1,7 +1,5 @@
 <template>
-  <q-page padding>
-      <h1>Keywords</h1>
-  </q-page>
+  <h1>Wait</h1>
 </template>
 
 <script>
