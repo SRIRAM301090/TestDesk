@@ -1,11 +1,30 @@
 // app global css in Sass form
+body
+    background-color: #fafafa
+    font-size: 16px
+
+.q-page
+    font-weight:300
+
 .small-screen-only
     @media (max-width: $breakpoint-xs-max)
         display: block
     @media (min-width: $breakpoint-sm-min)
         display: none
+
 .large-screen-only
     @media (max-width: $breakpoint-xs-max)
         display: none
     @media (min-width: $breakpoint-sm-min)
         display: block
+
+.aside-list
+    @media (max-width: $breakpoint-sm-max)
+        display: none
+    @media (min-width: $breakpoint-md-min)
+        display: block
+    width: 180px
+
+.constrain
+    max-width: 1024px
+    margin: 0px auto
