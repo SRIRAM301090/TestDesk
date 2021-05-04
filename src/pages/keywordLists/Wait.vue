@@ -23,9 +23,8 @@
       v-for="keyword in keywordInfo"
       :key="keyword.id"
       :keyword="keyword"
+      :id="keyword.cmd"
     />
-
-    <button @click="gotoUsage">Click</button>
   </q-page>
 </template>
 
@@ -78,6 +77,7 @@ export default {
       ]
     };
   },
+  props: ["setScroll"],
   emits: ["scrollSection"],
   components: {
     "keyword-title": () =>
@@ -86,19 +86,17 @@ export default {
       import("../../components/Documentation/keywordInfo.vue")
   },
   methods: {
-    scrollToElement() {
-      const el = document.getElementById("usage");
+    scrollToElement(id) {
+      const el = document.getElementById(id);
       const target = getScrollTarget(el);
       const offset = el.offsetTop;
       const duration = 500;
       setScrollPosition(target, offset, duration);
-    },
-    gotoUsage() {
-      // const scrollElements = document.querySelectorAll(".scrollLink");
-      // console.log(scrollElements[0].id);
-      // console.log(scrollElements[1].id);
-      // this.scrollToElement();
-      console.log(this.$refs.hello.$el);
+    }
+  },
+  watch: {
+    setScroll(val) {
+      if (val) this.scrollToElement(val);
     }
   },
   mounted() {

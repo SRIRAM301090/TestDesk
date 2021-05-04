@@ -4,14 +4,17 @@
       <div class="col-12 col-md-10">
         <component
           class="constrain"
-          @getScrollSections="setScrollSection"
+          @getScrollSections="getScrollSection"
+          :setScroll="currentScrollSection"
           :is="id"
         ></component>
       </div>
-      <div class="col-md-2">
-        <keyword-sections :sections="scrollSection" class="aside-list"
-          >Second column</keyword-sections
-        >
+      <div class="col-md-2 fixed-right q-mt-xl">
+        <keyword-sections
+          :sections="kwdScrollSections"
+          class="aside-list"
+          @setScroll="scrollToSection"
+        />
       </div>
     </div>
   </q-page>
@@ -23,7 +26,8 @@ export default {
   data() {
     return {
       componentExists: false,
-      scrollSection: []
+      kwdScrollSections: [],
+      currentScrollSection: ""
     };
   },
   props: ["id"],
@@ -33,8 +37,14 @@ export default {
     wait: () => import("src/pages/keywordLists/wait.vue")
   },
   methods: {
-    setScrollSection(pos) {
-      this.scrollSection = pos;
+    getScrollSection(pos) {
+      this.kwdScrollSections = pos;
+    },
+    scrollToSection(el) {
+      this.currentScrollSection = el;
+      setTimeout(() => {
+        this.currentScrollSection = "";
+      }, 1000);
     }
   },
   beforeMount() {
