@@ -34,7 +34,8 @@ export default {
   components: {
     "keyword-sections": () =>
       import("components/Documentation/keywordSections.vue"),
-    wait: () => import("src/pages/keywordLists/wait.vue")
+    wait: () => import("src/pages/keywordLists/wait.vue"),
+    snap: () => import("src/pages/keywordLists/snap.vue")
   },
   methods: {
     getScrollSection(pos) {

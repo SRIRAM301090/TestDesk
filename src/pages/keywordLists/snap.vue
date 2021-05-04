@@ -33,51 +33,49 @@ import { uid } from "quasar";
 import mixinKeywordDocs from "src/mixins/mixin-Keyword-docs";
 
 export default {
-  name: "wait",
+  name: "snap",
   mixins: [mixinKeywordDocs],
   data() {
     return {
-      keywordHeadings: ["Wait", "Usage"],
-      keywordDescription: `Used to suspend execution of a test for a particular time. The delay can
-      be specified in seconds and milliseconds. It is supported for all
-      projects.`,
+      keywordHeadings: ["Snap", "Usage"],
+      keywordDescription: `Used to capture the image from the camera. The image can be a full image or ROI specific. 
+      It is supported for all projects.`,
       keywordInfo: [
         {
           id: uid(),
-          cmd: "Wait.mSec",
-          description: `Pauses the program for the amount of time (in milliseconds) specified
-          as parameter.`,
-          syntax: "Wait.mSec(Delay)",
+          cmd: "Snap.full",
+          description: `Capture the full image`,
+          syntax: "Snap.full(Cam)",
           parameters: [
             {
               id: uid(),
-              name: `Delay: the number of milliseconds to pause. Allowed data types:
-          unsigned long.`
+              name: `Cam: Specify the Camera name from NI MAX`
             }
           ],
-          exampleHeading: "Wait for 2000 millisecond",
-          exampleCode: "PC_1. Wait.mSec(Delay=2000)"
+          exampleHeading: "Snap Image from the ECU",
+          exampleCode: "PC_1. Snap.full(Cam=ECU)"
         },
         {
           id: uid(),
-          cmd: "Wait.Sec",
-          description: `Pauses the program for the amount of time (in seconds) specified
-          as parameter.
-          `,
-          syntax: "Wait.Sec(Delay)",
+          cmd: "Snap.ROI",
+          description: `Capture the ROI specific image.`,
+          syntax: "Snap.ROI(Cam, ROI)",
           parameters: [
             {
               id: uid(),
-              name: `Delay: the number of seconds to pause. Allowed data types:
-          unsigned long.`
+              name: `Cam: Specify the Camera name from NI MAX`
+            },
+            {
+              id: uid(),
+              name: `ROI: Specify the ROI`
             }
           ],
-          exampleHeading: "Wait for 2 second",
-          exampleCode: "PC_1. Wait.Sec(Delay=2)"
+          exampleHeading: "Snap Image with ROI",
+          exampleCode: "PC_1. Snap.ROI(Cam=ECU, ROI='100:100:200:200')"
         }
       ]
     };
-  },
+  }
 };
 </script>
 
