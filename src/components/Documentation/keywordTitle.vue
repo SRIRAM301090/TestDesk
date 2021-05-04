@@ -1,6 +1,6 @@
 <template>
-  <div>
-  <h1 :class="'text-'+ size" class="text-primary scrollLink">{{ heading }}</h1>
+  <div class="scrollLink">
+  <h1 :class="'text-'+ size" class="text-primary">{{ heading }}</h1>
   <hr v-if="hrLine">
   </div>
 </template>

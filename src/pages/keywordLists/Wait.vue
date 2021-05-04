@@ -3,19 +3,19 @@
     <!-- Title & Description -->
     <keyword-title
       :heading="keywordHeadings[0]"
-      size="h3"
-      id="Introduction"
+      :id="keywordHeadings[0]"
       :hr-line="false"
+      size="h3"
     ></keyword-title>
-    <p>{{ keywordDescription }}.</p>
+    <p>{{ keywordDescription }}</p>
 
     <!-- Keyword Syntax -->
     <keyword-title
       :heading="keywordHeadings[1]"
+      :id="keywordHeadings[1]"
+      :hr-line="true"
       size="h4"
       class="q-mb-xs"
-      id="Usage"
-      :hr-line="true"
     ></keyword-title>
 
     <!-- Keyword Info -->
@@ -24,6 +24,8 @@
       :key="keyword.id"
       :keyword="keyword"
     />
+
+    <button @click="gotoUsage">Click</button>
   </q-page>
 </template>
 
@@ -32,12 +34,12 @@ import { scroll, uid } from "quasar";
 const { getScrollTarget, setScrollPosition } = scroll;
 
 export default {
-  name: "Wait",
+  name: "wait",
   data() {
     return {
       keywordHeadings: ["Wait", "Usage"],
       keywordDescription: `Used to suspend execution of a test for a particular time. The delay can
-      be specified in seconds and milliseconds. It is supported for all 
+      be specified in seconds and milliseconds. It is supported for all
       projects.`,
       keywordInfo: [
         {
@@ -76,6 +78,7 @@ export default {
       ]
     };
   },
+  emits: ["scrollSection"],
   components: {
     "keyword-title": () =>
       import("../../components/Documentation/keywordTitle.vue"),
@@ -91,12 +94,19 @@ export default {
       setScrollPosition(target, offset, duration);
     },
     gotoUsage() {
-      const scrollElements = document.querySelectorAll(".scrollLink");
-      console.log(scrollElements);
-      console.log(scrollElements[0].id);
-      console.log(scrollElements[1].id);
+      // const scrollElements = document.querySelectorAll(".scrollLink");
+      // console.log(scrollElements[0].id);
+      // console.log(scrollElements[1].id);
       // this.scrollToElement();
+      console.log(this.$refs.hello.$el);
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      const elList = document.querySelectorAll(".scrollLink");
+      const scrollSections = Array.from(elList).map(el => el.id);
+      this.$emit("getScrollSections", scrollSections);
+    }, 250);
   }
 };
 </script>
