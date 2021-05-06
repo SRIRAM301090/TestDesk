@@ -7,11 +7,11 @@ export default {
   components: {
     "keyword-title": () =>
       import("src/components/Documentation/keywordTitle.vue"),
-    "keyword-info": () =>
-      import("src/components/Documentation/keywordInfo.vue")
+    "keyword-info": () => import("src/components/Documentation/keywordInfo.vue")
   },
   methods: {
     scrollToElement(id) {
+      console.log(id);
       const el = document.getElementById(id);
       const target = getScrollTarget(el);
       const offset = el.offsetTop;
@@ -30,5 +30,7 @@ export default {
       const scrollSections = Array.from(elList).map(el => el.id);
       this.$emit("getScrollSections", scrollSections);
     }, 250);
+    const redirectURL = this.$route.query.redirect;
+    if (redirectURL) this.scrollToElement(redirectURL);
   }
 };
