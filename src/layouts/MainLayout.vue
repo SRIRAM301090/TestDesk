@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -60,6 +60,10 @@
       </q-list>
     </q-drawer>
 
+    <q-drawer show-if-above v-model="right" side="right" bordered>
+      <ScrollSectionLists />
+    </q-drawer>
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -68,6 +72,7 @@
 
 <script>
 import EssentialLink from "components/EssentialLink.vue";
+import ScrollSectionLists from "components/shared/ScrollSectionLists.vue";
 
 const linksData = [
   {
@@ -98,10 +103,14 @@ const linksData = [
 
 export default {
   name: "MainLayout",
-  components: { EssentialLink },
+  components: {
+    EssentialLink,
+    ScrollSectionLists
+  },
   data() {
     return {
       leftDrawerOpen: false,
+      right: true,
       essentialLinks: linksData,
       tab: "mails"
     };

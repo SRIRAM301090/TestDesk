@@ -1,20 +1,8 @@
 <template>
   <q-page padding>
     <div class="row" v-if="componentExists">
-      <div class="col-12 col-md-10">
-        <component
-          class="constrain"
-          @getScrollSections="getScrollSection"
-          :setScroll="currentScrollSection"
-          :is="id"
-        ></component>
-      </div>
-      <div class="col-md-2 fixed-right q-mt-xl">
-        <keyword-sections
-          :sections="kwdScrollSections"
-          class="aside-list"
-          @setScroll="scrollToSection"
-        />
+      <div class="col-12">
+        <component class="constrain" :is="id"></component>
       </div>
     </div>
   </q-page>
@@ -25,28 +13,13 @@ export default {
   name: "PageKeywords",
   data() {
     return {
-      componentExists: false,
-      kwdScrollSections: [],
-      currentScrollSection: ""
+      componentExists: false
     };
   },
   props: ["id"],
   components: {
-    "keyword-sections": () =>
-      import("components/Documentation/keywordSections.vue"),
-    wait: () => import("src/pages/keywordLists/wait.vue"),
-    snap: () => import("src/pages/keywordLists/snap.vue")
-  },
-  methods: {
-    getScrollSection(pos) {
-      this.kwdScrollSections = pos;
-    },
-    scrollToSection(el) {
-      this.currentScrollSection = el;
-      setTimeout(() => {
-        this.currentScrollSection = "";
-      }, 1000);
-    }
+    wait: () => import("src/pages/keywordLists/WaitTimer.vue"),
+    snap: () => import("src/pages/keywordLists/SnapImage.vue")
   },
   beforeMount() {
     this.componentExists = this.id in this.$options.components ? true : false;

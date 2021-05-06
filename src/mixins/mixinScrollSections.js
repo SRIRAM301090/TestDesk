@@ -1,17 +1,14 @@
 import { scroll } from "quasar";
+import { mapState, mapActions } from "vuex";
 const { getScrollTarget, setScrollPosition } = scroll;
 
 export default {
-  props: ["setScroll"],
-  emits: ["scrollSection"],
-  components: {
-    "keyword-title": () =>
-      import("src/components/Documentation/keywordTitle.vue"),
-    "keyword-info": () => import("src/components/Documentation/keywordInfo.vue")
+  computed: {
+    ...mapState("scroll", ["currentScrollPosition"])
   },
   methods: {
+    ...mapActions("scroll", ["setScrollSections"]),
     scrollToElement(id) {
-      console.log(id);
       const el = document.getElementById(id);
       const target = getScrollTarget(el);
       const offset = el.offsetTop;
@@ -20,7 +17,7 @@ export default {
     }
   },
   watch: {
-    setScroll(val) {
+    currentScrollPosition(val) {
       if (val) this.scrollToElement(val);
     }
   },
@@ -28,9 +25,9 @@ export default {
     setTimeout(() => {
       const elList = document.querySelectorAll(".scrollLink");
       const scrollSections = Array.from(elList).map(el => el.id);
-      this.$emit("getScrollSections", scrollSections);
+      this.setScrollSections(scrollSections);
+      const redirectURL = this.$route.query.redirect;
+      if (redirectURL) this.scrollToElement(redirectURL);
     }, 250);
-    const redirectURL = this.$route.query.redirect;
-    if (redirectURL) this.scrollToElement(redirectURL);
   }
 };

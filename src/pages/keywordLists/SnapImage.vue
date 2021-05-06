@@ -1,22 +1,22 @@
 <template>
   <q-page>
     <!-- Title & Description -->
-    <keyword-title
+    <heading-display
       :heading="keywordHeadings[0]"
       :id="keywordHeadings[0]"
       :hr-line="false"
       size="h3"
-    ></keyword-title>
+    ></heading-display>
     <p>{{ keywordDescription }}</p>
 
     <!-- Keyword Syntax -->
-    <keyword-title
+    <heading-display
       :heading="keywordHeadings[1]"
       :id="keywordHeadings[1]"
       :hr-line="true"
       size="h4"
       class="q-mb-xs"
-    ></keyword-title>
+    ></heading-display>
 
     <!-- Keyword Info -->
     <keyword-info
@@ -30,11 +30,16 @@
 
 <script>
 import { uid } from "quasar";
-import mixinKeywordDocs from "src/mixins/mixin-Keyword-docs";
+import mixinScrollSections from "src/mixins/mixinScrollSections";
 
 export default {
   name: "snap",
-  mixins: [mixinKeywordDocs],
+  mixins: [mixinScrollSections],
+  components: {
+    "heading-display": () =>
+      import("components/Shared/HeadingsDisplay.vue"),
+    "keyword-info": () => import("components/Documentation/KeywordInfo.vue")
+  },
   data() {
     return {
       keywordHeadings: ["Snap", "Usage"],
