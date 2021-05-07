@@ -3,12 +3,45 @@
     <div class="constrain">
       <!-- Title & Description -->
       <headings-display
-        :heading="keywordHeadings[0]"
-        :id="keywordHeadings[0]"
+        heading="Keyword Driven Testing"
+        id="Keyword Driven Testing"
         :hr-line="false"
         size="h3"
       ></headings-display>
       <p>{{ keywordDescription }}</p>
+
+      <!-- Keyword Reference -->
+      <headings-display
+        heading="Keyword Reference"
+        id="Keyword Reference"
+        size="h4"
+        class="q-mt-xl"
+        :hr-line="false"
+      ></headings-display>
+
+      <div class="q-mt-xl" v-for="keyword in keywordsList" :key="keyword.id">
+        <headings-display
+          :heading="keyword.type"
+          :id="keyword.type"
+          size="h5"
+          class="q-mt-md"
+          :hr-line="true"
+        ></headings-display>
+
+        <ul v-for="list in keyword.lists" :key="list">
+          <li>
+            <q-btn
+              no-caps
+              no-wrap
+              flat
+              rounded
+              color="primary"
+              :to="`/keywords/${keyword.page}?redirect=${list}`"
+              :label="list"
+            />
+          </li>
+        </ul>
+      </div>
     </div>
   </q-page>
 </template>
@@ -20,42 +53,26 @@ import mixinScrollSections from "src/mixins/mixinScrollSections";
 export default {
   data() {
     return {
-      name:"PageKeyword",
-      keywordHeadings: ["Keyword Driven Testing", "Usage"],
-      keywordDescription: `A software testing methodology suitable for both manual and automated testing. This method separates the documentation of test cases – including both the data and functionality to use – from the prescription of the way the test cases are executed. As a result, it separates the test creation process into two distinct stages: a design and development stage, and an execution stage. The design substage covers the requirement analysis and assessment and the data analysis, definition, and population.`,
+      name: "PageKeyword",
+      keywordDescription: `A software testing methodology suitable for both manual and automated testing. This method separates the documentation of test cases – including both the data and functionality to use.`,
       keywordsList: [
         {
           id: uid(),
-          imgSrc: require("src/assets/camera.svg"),
           type: "Image",
-          page:"snap",
+          page: "snap",
           lists: ["Snap.full", "Snap.ROI"]
         },
         {
           id: uid(),
-          imgSrc: require("src/assets/timer.svg"),
           type: "Delay",
-          page:"wait",
-          lists: ["Wait.Sec", "Wait.mSec",]
-        },
-        {
-          id: uid(),
-          imgSrc: require("src/assets/timer.svg"),
-          type: "Image",
-          lists: ["Snap.full", "Snap.ROI", "Snap.full", "Snap.ROI"]
-        },
-        {
-          id: uid(),
-          imgSrc: require("src/assets/camera64.png"),
-          type: "Image",
-          lists: ["Snap.full", "Snap.ROI"]
+          page: "wait",
+          lists: ["Wait.Sec", "Wait.mSec"]
         }
       ]
     };
   },
   components: {
-    "headings-display": () =>
-      import("components/Shared/HeadingsDisplay.vue")
+    "headings-display": () => import("components/Shared/HeadingsDisplay.vue")
   },
   mixins: [mixinScrollSections]
 };

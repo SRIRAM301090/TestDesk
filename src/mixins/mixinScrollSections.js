@@ -12,7 +12,7 @@ export default {
       const el = document.getElementById(id);
       const target = getScrollTarget(el);
       const offset = el.offsetTop;
-      const duration = 500;
+      const duration = 0;
       setScrollPosition(target, offset, duration);
     }
   },

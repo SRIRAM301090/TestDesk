@@ -3,10 +3,9 @@
     <q-list
       v-if="scrollSections.length"
       dense
-      bordered
       padding
       class="rounded-borders"
-      style="background-color: white"
+      style="background-color: white; border-left: 5px solid #1976D2"
     >
       <q-item
         clickable

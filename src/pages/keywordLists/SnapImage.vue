@@ -2,8 +2,8 @@
   <q-page>
     <!-- Title & Description -->
     <heading-display
-      :heading="keywordHeadings[0]"
-      :id="keywordHeadings[0]"
+      heading="Snap"
+      id="Snap"
       :hr-line="false"
       size="h3"
     ></heading-display>
@@ -11,8 +11,8 @@
 
     <!-- Keyword Syntax -->
     <heading-display
-      :heading="keywordHeadings[1]"
-      :id="keywordHeadings[1]"
+      heading="Usage"
+      id="Usage"
       :hr-line="true"
       size="h4"
       class="q-mb-xs"
@@ -42,7 +42,6 @@ export default {
   },
   data() {
     return {
-      keywordHeadings: ["Snap", "Usage"],
       keywordDescription: `Used to capture the image from the camera. The image can be a full image or ROI specific. 
       It is supported for all projects.`,
       keywordInfo: [
