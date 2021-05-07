@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh LpR fFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -45,10 +45,10 @@
       v-model="leftDrawerOpen"
       class="large-screen-only"
       show-if-above
+      side="left"
       bordered
       content-class="bg-grey-1"
     >
-    
       <q-list>
         <q-item-label header class="text-grey-8">
           Essential Links
@@ -61,7 +61,13 @@
       </q-list>
     </q-drawer>
 
-    <q-drawer show-if-above v-model="right" side="right" bordered>
+    <q-drawer
+      show-if-above
+      v-model="right"
+      side="right"
+      bordered
+      content-class="bg-grey-1"
+    >
       <ScrollSectionLists />
     </q-drawer>
 
