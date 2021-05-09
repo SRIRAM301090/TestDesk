@@ -15,6 +15,24 @@
         <q-toolbar-title class="absolute-center">
           TestDesk
         </q-toolbar-title>
+
+        <q-btn
+          v-if="!loggedIn"
+          to="/auth"
+          class="absolute-right"
+          flat
+          icon-right="account_circle"
+          label="Login"
+        />
+
+        <q-btn
+          @click="logoutUser"
+          v-else
+          class="absolute-right"
+          flat
+          icon-right="account_circle"
+          label="Logout"
+        />
       </q-toolbar>
     </q-header>
 
@@ -80,6 +98,7 @@
 <script>
 import EssentialLink from "components/EssentialLink.vue";
 import ScrollSectionLists from "components/shared/ScrollSectionLists.vue";
+import { mapState, mapActions } from "vuex";
 
 const linksData = [
   {
@@ -121,6 +140,12 @@ export default {
       essentialLinks: linksData,
       tab: "mails"
     };
+  },
+  computed: {
+    ...mapState("auth", ["loggedIn"])
+  },
+  methods:{
+    ...mapActions("auth", ["logoutUser"])
   }
 };
 </script>
