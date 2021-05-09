@@ -32,12 +32,29 @@
           :rules="[val => val.length >= 6 || 'Please use maximum 6 characters']"
         />
       </div>
-      <div class="row">
-        <q-space />
-        <q-btn :label="type" type="submit" color="primary" />
+      <div class="text-center">
+        <q-btn
+          :label="type | capitalize"
+          type="submit"
+          color="primary"
+          style="width: 200px"
+          no-caps
+        />
       </div>
     </q-form>
-    <q-btn color="primary" icon="check" label="Sign In with Google" @click="googleSignup" />
+
+    <p class="text-center q-mt-md">or</p>
+
+    <div class="text-center">
+      <q-btn
+        style="width: 200px"
+        color="negative"
+        no-caps
+        icon="person"
+        label="Sign in with Google"
+        @click="googleSignup"
+      />
+    </div>
   </q-page>
 </template>
 
@@ -58,7 +75,7 @@ export default {
   },
   props: ["type"],
   methods: {
-    ...mapActions("auth", ["registerUser", "loginUser","googleSignup"]),
+    ...mapActions("auth", ["registerUser", "loginUser", "googleSignup"]),
     onSubmit() {
       this.$refs.email.validate();
       this.$refs.password.validate();
