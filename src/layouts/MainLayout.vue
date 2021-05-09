@@ -83,6 +83,7 @@
       show-if-above
       v-model="right"
       side="right"
+      bordered
       content-class="bg-grey-1"
     >
       <ScrollSectionLists />

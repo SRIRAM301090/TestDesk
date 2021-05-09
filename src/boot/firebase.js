@@ -16,6 +16,8 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAuth = firebaseApp.auth();
 const authProvider = new firebase.auth.GoogleAuthProvider();
 // const firebaseFireStore = firebaseApp.firestore;
-const firebaseRealTimeDB = firebaseApp.database();
+const firebaseRealTimeDB = firebaseApp.database(
+  "https://testdesk-baa4e-default-rtdb.asia-southeast1.firebasedatabase.app/"
+);
 
 export { firebaseAuth, authProvider, firebaseRealTimeDB };

@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // import example from './module-example'
-import scroll from './scroll'
-import auth from './auth'
+import scroll from './store-scroll'
+import auth from './store-auth'
+import test from './store-test'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       scroll,
-      auth
+      auth,
+      test
     },
 
     // enable strict mode (adds overhead!)
