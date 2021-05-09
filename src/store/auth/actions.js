@@ -32,7 +32,7 @@ export function handleAuthSateChange({ commit }) {
     if (user) {
       commit("setLoggedIn", true);
       LocalStorage.set("loggedIn", true);
-      this.$router.push("/").catch(err => {});
+      // this.$router.push("/").catch(err => {});
     }
     else{
       commit("setLoggedIn", false);

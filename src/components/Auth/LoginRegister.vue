@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
@@ -74,6 +74,9 @@ export default {
     }
   },
   props: ["type"],
+  computed:{
+    ...mapState("auth", ["loggedIn"])
+  },
   methods: {
     ...mapActions("auth", ["registerUser", "loginUser", "googleSignup"]),
     onSubmit() {
@@ -98,6 +101,13 @@ export default {
     validateEmail(email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());
+    }
+  },
+  watch: {
+    loggedIn(value){
+      if(value){
+      this.$router.push("/");
+      }
     }
   }
 };
