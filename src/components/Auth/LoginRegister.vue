@@ -37,10 +37,13 @@
         <q-btn :label="type" type="submit" color="primary" />
       </div>
     </q-form>
+    <q-btn color="primary" icon="check" label="Sign In with Google" @click="googleSignup" />
   </q-page>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -55,14 +58,23 @@ export default {
   },
   props: ["type"],
   methods: {
+    ...mapActions("auth", ["registerUser", "loginUser","googleSignup"]),
     onSubmit() {
       this.$refs.email.validate();
       this.$refs.password.validate();
       if (!this.$refs.email.hasError && !this.$refs.password.hasError) {
         if (this.type === "login") {
           console.log("user login trigger");
+          this.loginUser({
+            email: this.email,
+            password: this.password
+          });
         } else {
           console.log("user register trigger");
+          this.registerUser({
+            email: this.email,
+            password: this.password
+          });
         }
       }
     },
