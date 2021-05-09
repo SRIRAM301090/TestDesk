@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import mixinScrollSections from "src/mixins/mixinScrollSections";
+
 export default {
   name: "PageKeywords",
   data() {
@@ -16,6 +18,7 @@ export default {
       componentExists: false
     };
   },
+  mixins: [mixinScrollSections],
   props: ["id"],
   components: {
     wait: () => import("src/pages/keywordLists/WaitTimer.vue"),

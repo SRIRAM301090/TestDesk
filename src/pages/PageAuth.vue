@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import mixinScrollSections from "src/mixins/mixinScrollSections";
+
 export default {
   data() {
     return {
@@ -38,7 +40,8 @@ export default {
   },
   components: {
     "login-register": () => import("../components/Auth/LoginRegister.vue")
-  }
+  },
+  mixins: [mixinScrollSections]
 };
 </script>
 
