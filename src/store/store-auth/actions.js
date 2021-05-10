@@ -28,7 +28,6 @@ export function googleSignup() {
 export function handleAuthSateChange({ commit }) {
   firebaseAuth.onAuthStateChanged(user => {
     Loading.hide();
-    console.log(user);
     if (user) {
       commit("setLoggedIn", true);
       LocalStorage.set("loggedIn", true);

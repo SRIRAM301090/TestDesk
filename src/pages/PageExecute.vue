@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="constrain">
     <div class="q-pa-md row" style="max-width: 500px">
       <q-select
         dense
@@ -30,6 +30,7 @@
       />
     </div>
     <testcase-tree />
+    <p>{{testHeaders}}</p>
   </q-page>
 </template>
 
@@ -40,19 +41,18 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      selectedProject: null,
-      selectedProjectVariant: null
+      selectedProject: "Ford",
+      selectedProjectVariant: "DatX"
     };
   },
-  computed: { ...mapGetters("test", ["projects", "projectVariants"]) },
+  computed: { ...mapGetters("test", ["projects", "projectVariants", "testHeaders"]) },
   mixins: [mixinScrollSections],
   components: {
-    "testcase-tree": () => import("components/Testing/TestcaseTree.vue")
+    "testcase-tree": () => import("src/components/Testing/TestcaseTree.vue")
   },
   methods: {
     ...mapActions("test", [
       "getProjectLists",
-      "fbReadData",
       "setUserSelectedProject",
       "getTestCase"
     ]),
@@ -72,7 +72,6 @@ export default {
   },
   mounted() {
     this.getProjectLists();
-    this.fbReadData();
   }
 };
 </script>
