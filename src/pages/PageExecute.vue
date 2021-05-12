@@ -1,77 +1,34 @@
 <template>
   <q-page padding class="constrain">
-    <div class="q-pa-md row" style="max-width: 500px">
-      <q-select
-        dense
-        outlined
-        v-model="selectedProject"
-        :options="projects"
-        label="Project"
-        class="col"
-        @input="setUserSelectedProject(selectedProject)"
-      />
-      <q-select
-        dense
-        outlined
-        v-model="selectedProjectVariant"
-        :options="projectVariants"
-        label="Project Variant"
-        class="col q-ml-md"
-      />
-      <q-btn
-        dense
-        color="primary"
-        outline
-        no-caps
-        icon="file_download"
-        label="Load"
-        class="q-ml-md"
-        @click="loadTestCase"
-      />
+    <div class="row">
+      <div class="col-12 col-sm-6 q-pa-sm">
+        <test-project-select />
+        <testcase-tree />
+      </div>
+
+      <div class="col-12 col-sm-6 q-pa-sm">
+        <test-bench-operations />
+      </div>
     </div>
-    <testcase-tree />
-    <p>{{testHeaders}}</p>
   </q-page>
 </template>
 
 <script>
 import mixinScrollSections from "src/mixins/mixinScrollSections";
-import { mapGetters, mapActions } from "vuex";
 
 export default {
+  mixins: [mixinScrollSections],
   data() {
     return {
-      selectedProject: "Ford",
-      selectedProjectVariant: "DatX"
+      splitterModel: 20
     };
   },
-  computed: { ...mapGetters("test", ["projects", "projectVariants", "testHeaders"]) },
-  mixins: [mixinScrollSections],
   components: {
-    "testcase-tree": () => import("src/components/Testing/TestcaseTree.vue")
-  },
-  methods: {
-    ...mapActions("test", [
-      "getProjectLists",
-      "setUserSelectedProject",
-      "getTestCase"
-    ]),
-    loadTestCase() {
-      if (this.selectedProject && this.selectedProjectVariant) {
-        this.getTestCase({
-          project: this.selectedProject,
-          projectVariant: this.selectedProjectVariant
-        });
-      }
-    }
-  },
-  watch: {
-    selectedProject(val) {
-      if (val) this.selectedProjectVariant = "";
-    }
-  },
-  mounted() {
-    this.getProjectLists();
+    "test-project-select": () =>
+      import("components/Testing/TestProjectSelect.vue"),
+    "testcase-tree": () => import("src/components/Testing/TestcaseTree.vue"),
+    "test-bench-operations": () =>
+      import("src/components/Testing/TestBenchOperations.vue")
   }
 };
 </script>

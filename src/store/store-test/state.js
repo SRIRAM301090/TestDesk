@@ -2,6 +2,9 @@ export default function() {
   return {
     testCases: {},
     projects: null,
-    userSelectedProject: ""
+    userSelectedProject: "",
+    benchCommand: "",
+    testCaseNode: "",
+    dbRef: null
   };
 }
