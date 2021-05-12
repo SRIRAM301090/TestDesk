@@ -1,5 +1,4 @@
 import Vue from "vue";
-import state from "../store-scroll/state";
 
 export function setLoggedIn(state, value) {
   state.loggedIn = value;
@@ -11,6 +10,10 @@ export function setProjectLists(state, value) {
 
 export function setUserSelectedProject(state, project) {
   state.userSelectedProject = project;
+}
+
+export function setSelectedTest(state, id) {
+  state.selectedTest = id;
 }
 
 export function addTestCase(state, payload) {
@@ -27,10 +30,6 @@ export function updateTestCases(state, payload) {
 
 export function setTestCaseNode(state, node) {
   state.testCaseNode = node;
-}
-
-export function dbRef(state, value) {
-  state.dbRef = value;
 }
 
 export function clearTestCases(state) {

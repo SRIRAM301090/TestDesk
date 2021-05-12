@@ -55,6 +55,10 @@ export function setUserSelectedProject({ commit }, project) {
   commit("setUserSelectedProject", project);
 }
 
+export function setSelectedTest({ commit }, id) {
+  commit("setSelectedTest", id);
+}
+
 export function sendCommand({ commit }, payload) {
   const refDB = firebaseRealTimeDB.ref(`/bench/${payload.testBench}/${uid()}`);
   const user = firebaseAuth.currentUser.uid;

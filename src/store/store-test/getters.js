@@ -14,6 +14,12 @@ export function projectVariants(state, getters) {
   }
 }
 
+export function showTestCase(state) {
+  if (state.selectedTest) {
+    return state.testCases[state.selectedTest];
+  }
+}
+
 export function testHeaders(state) {
   const testCases = state.testCases;
 

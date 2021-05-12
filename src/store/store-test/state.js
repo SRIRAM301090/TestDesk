@@ -5,6 +5,6 @@ export default function() {
     userSelectedProject: "",
     benchCommand: "",
     testCaseNode: "",
-    dbRef: null
+    selectedTest:""
   };
 }
