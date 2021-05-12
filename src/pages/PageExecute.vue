@@ -25,6 +25,7 @@
 
           <q-tab-panel name="testBench">
             <test-bench-operations />
+            <test-list-reports />
           </q-tab-panel>
         </q-tab-panels>
       </div>
@@ -49,7 +50,8 @@ export default {
       import("components/Testing/TestProjectSelect.vue"),
     "testcase-tree": () => import("src/components/Testing/TestcaseTree.vue"),
     "test-bench-operations": () =>
-      import("src/components/Testing/TestBenchOperations.vue")
+      import("src/components/Testing/TestBenchOperations.vue"),
+    "test-list-reports": () => import("components/Testing/TestListReports.vue")
   }
 };
 </script>

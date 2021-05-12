@@ -29,13 +29,7 @@ export default {
     return {
       treeHeightStyle: "",
       ticked: [],
-      selectedTest: null,
-      test: ` Precondition:
-              PC_1. Wait.Sec(Delay=2)
-              TestProcedure:
-              TP_1. Wait.mSec(Delay=1000)
-              Reset:
-              RST_1. Wait.Sec(Delay=2)`
+      selectedTest: null
     };
   },
   computed: {
@@ -65,9 +59,12 @@ export default {
   },
   updated() {
     this.$refs.nodes.expandAll();
-    if (this.selectedTest) {
-      console.log(this.selectedTest);
-      this.setSelectedTest(this.selectedTest);
+  },
+  watch: {
+    selectedTest(val) {
+      if (val) {
+        this.setSelectedTest(this.selectedTest);
+      }
     }
   }
 };

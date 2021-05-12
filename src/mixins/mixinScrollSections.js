@@ -21,6 +21,15 @@ export default {
       if (val) this.scrollToElement(val);
     }
   },
+  activated() {
+    setTimeout(() => {
+      const elList = document.querySelectorAll(".scrollLink");
+      const scrollSections = Array.from(elList).map(el => el.id);
+      this.setScrollSections(scrollSections);
+      const redirectURL = this.$route.query.redirect;
+      if (redirectURL) this.scrollToElement(redirectURL);
+    }, 250);
+  },
   mounted() {
     setTimeout(() => {
       const elList = document.querySelectorAll(".scrollLink");
