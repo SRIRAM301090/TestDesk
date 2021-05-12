@@ -90,7 +90,9 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <keep-alive :include="['PageExecute']">
+        <router-view />
+      </keep-alive>
     </q-page-container>
   </q-layout>
 </template>
@@ -144,7 +146,7 @@ export default {
   computed: {
     ...mapState("auth", ["loggedIn"])
   },
-  methods:{
+  methods: {
     ...mapActions("auth", ["logoutUser"])
   }
 };

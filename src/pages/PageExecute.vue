@@ -1,13 +1,32 @@
 <template>
   <q-page padding class="constrain">
-    <div class="row">
-      <div class="col-12 col-sm-6 q-pa-sm">
-        <test-project-select />
-        <testcase-tree />
-      </div>
+    <div class="q-pa-md">
+      <div class="q-gutter-y-md">
+        <q-tabs
+          v-model="tab"
+          dense
+          class="text-grey"
+          active-color="primary"
+          indicator-color="primary"
+          align="justify"
+          narrow-indicator
+        >
+          <q-tab name="testCase" label="Test Case" />
+          <q-tab name="testBench" label="Test Bench" />
+        </q-tabs>
 
-      <div class="col-12 col-sm-6 q-pa-sm">
-        <test-bench-operations />
+        <q-separator />
+
+        <q-tab-panels v-model="tab" animated keep-alive>
+          <q-tab-panel name="testCase">
+            <test-project-select />
+            <testcase-tree />
+          </q-tab-panel>
+
+          <q-tab-panel name="testBench">
+            <test-bench-operations />
+          </q-tab-panel>
+        </q-tab-panels>
       </div>
     </div>
   </q-page>
@@ -17,10 +36,12 @@
 import mixinScrollSections from "src/mixins/mixinScrollSections";
 
 export default {
+  name: "PageExecute",
   mixins: [mixinScrollSections],
   data() {
     return {
-      splitterModel: 20
+      splitterModel: 20,
+      tab: "testCase"
     };
   },
   components: {
