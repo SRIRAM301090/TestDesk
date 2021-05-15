@@ -12,6 +12,10 @@ export function setUserSelectedProject(state, project) {
   state.userSelectedProject = project;
 }
 
+export function setProjectVariant(state, variant) {
+  state.projectVariant = variant;
+}
+
 export function setSelectedTest(state, id) {
   state.selectedTest = id;
 }
@@ -38,4 +42,20 @@ export function clearTestCases(state) {
 
 export function userSelectedTests(state, tests) {
   state.tests = tests;
+}
+
+export function currentTest(state, payload) {
+  Vue.set(state.currentTest, payload.id, payload.test);
+}
+
+export function updateCurrentTest(state, payload) {
+  Object.assign(state.currentTest[payload.id], payload.updates);
+}
+
+export function selectTestBench(state, benchId) {
+  state.testBench = benchId;
+}
+
+export function clearPreviousTest(state) {
+  state.currentTest = {};
 }

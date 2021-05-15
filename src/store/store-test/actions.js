@@ -25,6 +25,7 @@ export function getTestCase({ commit, state }, payload) {
   }
 
   commit("setTestCaseNode", testCaseNode);
+  commit("setProjectVariant", payload.projectVariant);
   const testCases = firebaseRealTimeDB.ref(testCaseNode);
 
   testCases.on("child_added", snapshot => {
@@ -63,31 +64,54 @@ export function userSelectedTests({ commit }, tests) {
   commit("userSelectedTests", tests);
 }
 
-export function sendCommand({ commit }, payload) {
+export function selectTestBench({ commit, dispatch }, benchId) {
+  commit("selectTestBench", benchId);
+  dispatch("checkTestStatus", benchId);
+}
+
+export function sendCommand({ state, dispatch }, payload) {
   const refDB = firebaseRealTimeDB.ref(`/bench/${payload.testBench}/${uid()}`);
   const user = firebaseAuth.currentUser.uid;
-
-  console.log(payload);
 
   refDB.set({
     command: payload.testCommand,
     user: user,
     status: "command",
-    date: Date.now()
+    date: Date.now(),
+    project: state.userSelectedProject,
+    variant: state.projectVariant,
+    test: state.tests
   });
 
-  const check = firebaseRealTimeDB.ref(`/bench/${payload.testBench}`);
+  // dispatch("checkTestStatus", state.testBench);
+}
+
+export function checkTestStatus({ commit }, benchId) {
+  console.log("check Test status");
+  const check = firebaseRealTimeDB
+    .ref(`/bench/${benchId}`)
+    .orderByChild("date")
+    .limitToLast(1);
+
   check.on("child_added", snapshot => {
-    console.log(snapshot.val());
+    commit("clearPreviousTest");
+    console.log("Test Listner on and added");
+    const test = snapshot.val();
+    const payload = {
+      id: snapshot.key,
+      test: test
+    };
+    commit("currentTest", payload);
   });
 
   check.on("child_changed", snapshot => {
-    console.log(snapshot.val());
-    const data = snapshot.val();
-    if (data["status"] === "finished") {
-      console.log("finished");
-      check.off("child_added");
-      check.off("child_changed");
-    }
+    const test = snapshot.val();
+    console.log(test);
+    const payload = {
+      id: snapshot.key,
+      updates: test
+    };
+
+    commit("updateCurrentTest", payload);
   });
 }

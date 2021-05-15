@@ -3,9 +3,12 @@ export default function() {
     testCases: {},
     projects: null,
     userSelectedProject: "",
+    projectVariant: "",
     benchCommand: "",
     testCaseNode: "",
     selectedTest: "",
-    tests: []
+    tests: [],
+    currentTest: {},
+    testBench: ""
   };
 }

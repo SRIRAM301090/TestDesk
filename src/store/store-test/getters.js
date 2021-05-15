@@ -42,7 +42,7 @@ export function testCases(state, getters) {
   const testList = state.testCases;
   const headers = getters.testHeaders;
 
-  if (testCases && headers) {
+  if (testList && headers) {
     const testCases = {};
     testCases.label = "Test Case";
     const children = [];
@@ -66,5 +66,23 @@ export function testCases(state, getters) {
     const treeTestCase = [];
     treeTestCase.push(testCases);
     return treeTestCase;
+  }
+}
+
+export function currentTest(state) {
+  const currentTest = state.currentTest;
+  if (currentTest) {
+    for (const test in currentTest) {
+      return currentTest[test];
+    }
+  }
+}
+
+export function disableTest(state, getters) {
+  if (getters.currentTest) {
+    console.log(getters.currentTest.status);
+    return !(getters.currentTest.status === "finished");
+  } else {
+    return false;
   }
 }
