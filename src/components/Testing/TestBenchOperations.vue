@@ -35,6 +35,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -43,11 +44,13 @@ export default {
       testCommand: null,
       bench: ["CHE7-L26526", "CHE7-W10142"],
       command: ["self-test", "start-test"],
+      ignorePrevious: false
     };
   },
   methods: {
     ...mapActions("test", ["sendCommand", "selectTestBench"]),
     submit() {
+      this.ignorePrevious = true;
       this.sendCommand({
         testBench: this.testBench,
         testCommand: this.testCommand
@@ -57,6 +60,20 @@ export default {
   computed: {
     ...mapGetters("test", ["currentTest", "disableTest"])
   },
+  watch: {
+    currentTest: {
+      handler(val) {
+        if (
+          val.command === "self-test" &&
+          val.status === "finished" &&
+          this.ignorePrevious
+        ) {
+          this.$q.notify({ type: "positive", message: "Self test passed" });
+        }
+      },
+      deep: true
+    }
+  }
 };
 </script>
 
