@@ -35,3 +35,7 @@ export function setTestCaseNode(state, node) {
 export function clearTestCases(state) {
   state.testCases = {};
 }
+
+export function userSelectedTests(state, tests) {
+  state.tests = tests;
+}

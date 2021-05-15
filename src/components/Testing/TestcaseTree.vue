@@ -50,7 +50,7 @@ export default {
     window.removeEventListener("resize", {});
   },
   methods: {
-    ...mapActions("test", ["setSelectedTest"]),
+    ...mapActions("test", ["setSelectedTest", "userSelectedTests"]),
     setTreeHeight() {
       const treeTop = document.getElementById("treeScroll").offsetTop;
       const treeHeight = window.innerHeight - treeTop - 150;
@@ -64,6 +64,11 @@ export default {
     selectedTest(val) {
       if (val) {
         this.setSelectedTest(this.selectedTest);
+      }
+    },
+    ticked(val){
+      if(val) {
+        this.userSelectedTests(val);
       }
     }
   }

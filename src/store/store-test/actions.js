@@ -59,12 +59,22 @@ export function setSelectedTest({ commit }, id) {
   commit("setSelectedTest", id);
 }
 
+export function userSelectedTests({ commit }, tests) {
+  commit("userSelectedTests", tests);
+}
+
 export function sendCommand({ commit }, payload) {
   const refDB = firebaseRealTimeDB.ref(`/bench/${payload.testBench}/${uid()}`);
   const user = firebaseAuth.currentUser.uid;
 
   console.log(payload);
-  refDB.set({ command: payload.testCommand, user: user, status: "command" });
+
+  refDB.set({
+    command: payload.testCommand,
+    user: user,
+    status: "command",
+    date: Date.now()
+  });
 
   const check = firebaseRealTimeDB.ref(`/bench/${payload.testBench}`);
   check.on("child_added", snapshot => {

@@ -20,6 +20,10 @@ export function showTestCase(state) {
   }
 }
 
+export function tests(state) {
+  return state.tests;
+}
+
 export function testHeaders(state) {
   const testCases = state.testCases;
 

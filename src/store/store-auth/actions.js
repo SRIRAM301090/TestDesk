@@ -1,12 +1,13 @@
 import { firebaseAuth, authProvider } from "boot/firebase";
 import { LocalStorage, Loading } from "quasar";
+import { showErrorMessage } from "src/functions/function-show-error-message";
 
 export function registerUser({}, payload) {
   Loading.show();
   firebaseAuth
     .createUserWithEmailAndPassword(payload.email, payload.password)
     .then(response => console.log(response))
-    .catch(error => console.log(error));
+    .catch(error => showErrorMessage(error.message));
 }
 
 export function loginUser({}, payload) {
@@ -14,7 +15,7 @@ export function loginUser({}, payload) {
   firebaseAuth
     .signInWithEmailAndPassword(payload.email, payload.password)
     .then(response => console.log(response))
-    .catch(error => console.log(error));
+    .catch(error => showErrorMessage(error.message));
 }
 
 export function googleSignup() {
@@ -22,7 +23,7 @@ export function googleSignup() {
   firebaseAuth
     .signInWithPopup(authProvider)
     .then(response => console.log(response))
-    .catch(error => console.log(error));
+    .catch(error => showErrorMessage(error.message));
 }
 
 export function handleAuthSateChange({ commit }) {

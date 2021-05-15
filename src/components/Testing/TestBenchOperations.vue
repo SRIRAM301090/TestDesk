@@ -39,7 +39,7 @@ export default {
       testBench: null,
       testCommand: null,
       bench: ["CHE7-L26526", "CHE7-W10142"],
-      command: ["Self-Test", "Start-Test"]
+      command: ["self-test", "start-test"]
     };
   },
   methods: {
