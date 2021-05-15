@@ -80,7 +80,6 @@ export function currentTest(state) {
 
 export function disableTest(state, getters) {
   if (getters.currentTest) {
-    console.log(getters.currentTest.status);
     return !(getters.currentTest.status === "finished");
   } else {
     return false;

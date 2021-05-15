@@ -83,7 +83,6 @@ export function sendCommand({ state, dispatch }, payload) {
     test: state.tests
   });
 
-  // dispatch("checkTestStatus", state.testBench);
 }
 
 export function checkTestStatus({ commit }, benchId) {
@@ -95,12 +94,12 @@ export function checkTestStatus({ commit }, benchId) {
 
   check.on("child_added", snapshot => {
     commit("clearPreviousTest");
-    console.log("Test Listner on and added");
     const test = snapshot.val();
     const payload = {
       id: snapshot.key,
       test: test
     };
+
     commit("currentTest", payload);
   });
 
