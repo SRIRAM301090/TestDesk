@@ -69,7 +69,7 @@ export function selectTestBench({ commit, dispatch }, benchId) {
   dispatch("checkTestStatus", benchId);
 }
 
-export function sendCommand({ state, dispatch }, payload) {
+export function sendCommand({ state }, payload) {
   const refDB = firebaseRealTimeDB.ref(`/bench/${payload.testBench}/${uid()}`);
   const user = firebaseAuth.currentUser.uid;
 
@@ -80,13 +80,12 @@ export function sendCommand({ state, dispatch }, payload) {
     date: Date.now(),
     project: state.userSelectedProject,
     variant: state.projectVariant,
-    test: state.tests
+    test: state.tests,
+    sheetId: state.testCaseNode
   });
-
 }
 
 export function checkTestStatus({ commit }, benchId) {
-  console.log("check Test status");
   const check = firebaseRealTimeDB
     .ref(`/bench/${benchId}`)
     .orderByChild("date")
