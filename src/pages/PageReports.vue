@@ -1,6 +1,13 @@
 <template>
   <q-page padding>
-    <h1>Reports</h1>
+    <div class="row constrain">
+      <div>
+        <report-table />
+      </div>
+      <div>
+        <report-table />
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -8,7 +15,10 @@
 import mixinScrollSections from "src/mixins/mixinScrollSections";
 
 export default {
-  mixins: [mixinScrollSections]
+  mixins: [mixinScrollSections],
+  components: {
+    "report-table": () => import("src/components/Report/ReportTable.vue")
+  }
 };
 </script>
 
