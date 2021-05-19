@@ -104,7 +104,6 @@ export function checkTestStatus({ commit }, benchId) {
 
   check.on("child_changed", snapshot => {
     const test = snapshot.val();
-    console.log(test);
     const payload = {
       id: snapshot.key,
       updates: test

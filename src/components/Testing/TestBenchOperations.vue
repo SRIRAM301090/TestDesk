@@ -1,6 +1,5 @@
 <template>
   <div class="row q-mt-md" style="max-width: 450px">
-    <p>{{ currentTest }}</p>
     <q-select
       class="col"
       dense
