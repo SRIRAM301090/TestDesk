@@ -6,7 +6,8 @@
   "author": "Sriram Gopalan",
   "private": true,
   "scripts": {
-    "icons": "icongenie generate -i src/assets/AppIcon.png --skip-trim"
+    "icons": "icongenie generate -i src/assets/AppIcon.png --skip-trim",
+    "deploy": "quasar build && firebase deploy"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
