@@ -1,9 +1,7 @@
 <template>
   <q-page padding>
-    <div class="row constrain">
-      <div>
-        <report-table />
-      </div>
+    <div class="constrain">
+      <report-table />
     </div>
   </q-page>
 </template>

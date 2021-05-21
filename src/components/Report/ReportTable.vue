@@ -197,7 +197,9 @@ export default {
   },
   watch: {
     selected(val) {
-      this.reportUrl = val[0].url;
+      if (val.length) {
+        this.reportUrl = val[0].url;
+      }
     }
   }
 };
