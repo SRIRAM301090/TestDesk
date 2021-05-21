@@ -4,9 +4,6 @@
       <div>
         <report-table />
       </div>
-      <div>
-        <report-table />
-      </div>
     </div>
   </q-page>
 </template>

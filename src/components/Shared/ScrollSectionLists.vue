@@ -5,7 +5,7 @@
       dense
       padding
       class="rounded-borders"
-      style="background-color: white; border-left: 5px solid #1976D2"
+      style="background-color: white;"
     >
       <q-item
         clickable

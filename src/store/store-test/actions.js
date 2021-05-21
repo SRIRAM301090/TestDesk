@@ -1,5 +1,5 @@
 import { firebaseRealTimeDB, firebaseAuth } from "boot/firebase";
-import { uid } from "quasar";
+import { uid, Notify } from "quasar";
 
 export function getProjectLists({ commit }) {
   firebaseRealTimeDB.ref("/projects").once("value", snapshot => {
@@ -98,7 +98,6 @@ export function checkTestStatus({ commit }, benchId) {
       id: snapshot.key,
       test: test
     };
-
     commit("currentTest", payload);
   });
 
@@ -108,7 +107,23 @@ export function checkTestStatus({ commit }, benchId) {
       id: snapshot.key,
       updates: test
     };
-
+    const updates = payload.updates;
+    if (updates.command === "self-test" && updates.status === "finished") {
+      Notify.create({ message: "Self test passed", type: "positive" });
+    }
     commit("updateCurrentTest", payload);
+    if (updates.command === "start-test" && updates.status === "finished") {
+      Notify.create({ message: "All tests finished", type: "positive" });
+    }
+    if (updates.command === "start-test" && updates.result) {
+      const testIds = Object.keys(updates.result);
+      const latestTest = testIds[testIds.length - 1];
+      const testResult = updates.result[latestTest].status;
+      const type = testResult === "Passed" ? "positive" : "negative";
+      Notify.create({
+        message: `Test ID ${latestTest} : ${testResult}`,
+        type
+      });
+    }
   });
 }

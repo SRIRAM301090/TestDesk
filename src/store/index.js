@@ -1,12 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
 // import example from './module-example'
-import scroll from './store-scroll'
-import auth from './store-auth'
-import test from './store-test'
+import scroll from "./store-scroll";
+import auth from "./store-auth";
+import test from "./store-test";
+import reports from "./store-reports";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 /*
  * If not building with SSR mode, you can
@@ -17,18 +18,19 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default function (/* { ssrContext } */) {
+export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       scroll,
       auth,
-      test
+      test,
+      reports
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEBUGGING
-  })
+  });
 
-  return Store
+  return Store;
 }

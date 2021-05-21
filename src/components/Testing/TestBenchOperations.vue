@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-mt-md" style="max-width: 450px">
+  <div class="row q-mt-md" style="max-width: 450px" v-if="!disableTest">
     <q-select
       class="col"
       dense
@@ -19,7 +19,6 @@
       :disable="!testBench"
     />
     <q-btn
-      :disable="disableTest"
       dense
       style="width: 70px"
       color="primary"
@@ -58,20 +57,6 @@ export default {
   },
   computed: {
     ...mapGetters("test", ["currentTest", "disableTest"])
-  },
-  watch: {
-    currentTest: {
-      handler(val) {
-        if (
-          val.command === "self-test" &&
-          val.status === "finished" &&
-          this.ignorePrevious
-        ) {
-          this.$q.notify({ type: "positive", message: "Self test passed" });
-        }
-      },
-      deep: true
-    }
   }
 };
 </script>
