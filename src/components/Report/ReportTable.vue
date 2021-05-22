@@ -8,6 +8,7 @@
         @click="collectReports"
       />
       <q-table
+        flat
         ref="myTable"
         :class="tableClass"
         tabindex="0"
@@ -43,8 +44,8 @@
       class="q-mt-xl"
       style="border: 5px solid #1976D2"
     >
-      <h4>REPORTS</h4>
-      <embed type="text/html" :src="reportUrl" width="1024" height="1024" />
+      <h1 class="text-h4 text-green"><u> View Report </u></h1>
+      <embed class="render-html" type="text/html" :src="reportUrl" width="300" height="1024" />
     </div>
   </div>
 </template>
@@ -63,7 +64,7 @@ export default {
         {
           row: "desc",
           required: true,
-          label: "Report Id",
+          label: "Report ID",
           name: "report",
           align: "left",
           field: row => row.docId,
@@ -73,7 +74,7 @@ export default {
         {
           name: "id",
           align: "center",
-          label: "ID",
+          label: "Test ID",
           field: "id"
         },
         {
@@ -84,7 +85,7 @@ export default {
           sortable: true
         },
         { name: "variant", label: "Variant", field: "variant", sortable: true },
-        { name: "testId", label: "Test ID", field: "testId" },
+        { name: "testId", label: "Testcase ID", field: "testId" },
         { name: "status", label: "Status", field: "status", sortable: true }
       ],
       reportUrl: ""
@@ -204,3 +205,11 @@ export default {
   }
 };
 </script>
+
+<style lang="sass" scoped>
+.render-html
+    @media (max-width: $breakpoint-xs-max)
+        width:300px
+    @media (min-width: $breakpoint-md-min)
+        width:1024px
+</style>

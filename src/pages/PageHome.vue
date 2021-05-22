@@ -2,7 +2,7 @@
   <q-page padding>
     <div class="constrain">
       <div>
-        <h1 class="text-h1 q-mb-md text-primary">TestDesk</h1>
+        <h1 class="text-h2 text-weight-medium q-mb-md text-primary">TestDesk</h1>
         <h1 class="text-h5">Cloud based approach for Test Automation</h1>
       </div>
 
@@ -15,7 +15,7 @@
       </q-banner>
 
       <div class="row items-start q-gutter-sm ">
-        <div class="col col-md-4  text-center q-ma-none q-pa-md ">
+        <div class="col-12 col-md-4  text-center q-ma-none q-pa-md ">
           <q-icon name="cloud_done" size="48px" class="text-green" />
           <h4>Execute Tests</h4>
           <p>
@@ -23,7 +23,7 @@
           </p>
         </div>
 
-        <div class="col col-md-4 text-center q-ma-none q-pa-md">
+        <div class="col-12 col-md-4 text-center q-ma-none q-pa-md">
           <q-icon name="assignment_turned_in" size="48px" class="text-green" />
           <h4>View Reports</h4>
           <p>
@@ -31,7 +31,7 @@
           </p>
         </div>
 
-        <div class="col col-md-4  text-center q-ma-none q-pa-md">
+        <div class="col-12 col-md-4  text-center q-ma-none q-pa-md">
           <q-icon
             name="integration_instructions"
             size="48px"
@@ -43,7 +43,7 @@
           </p>
         </div>
 
-        <div class="col col-md-4  text-center q-ma-none q-pa-md">
+        <div class="col-12 col-md-4  text-center q-ma-none q-pa-md">
           <q-icon name="verified_user" size="48px" class="text-green" />
           <h4>Security</h4>
           <p>
@@ -51,7 +51,7 @@
           </p>
         </div>
 
-        <div class="col col-md-4  text-center q-ma-none q-pa-md">
+        <div class="col-12 col-md-4  text-center q-ma-none q-pa-md">
           <q-icon name="insights" size="48px" class="text-green" />
           <h4>Analytics</h4>
           <p>
@@ -59,7 +59,7 @@
           </p>
         </div>
 
-        <div class="col col-md-4  text-center q-ma-none q-pa-md">
+        <div class="col-12 col-md-4  text-center q-ma-none q-pa-md">
           <q-icon name="help_outline" size="48px" class="text-green" />
           <h4>Help</h4>
           <p>

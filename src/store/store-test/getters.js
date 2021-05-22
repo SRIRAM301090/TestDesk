@@ -73,14 +73,14 @@ export function currentTest(state) {
   const currentTest = state.currentTest;
   if (currentTest) {
     for (const test in currentTest) {
-      return currentTest[test];
+      return { id: test, test: currentTest[test] };
     }
   }
 }
 
 export function disableTest(state, getters) {
   if (getters.currentTest) {
-    return !(getters.currentTest.status === "finished");
+    return !(getters.currentTest.test.status === "finished");
   } else {
     return false;
   }

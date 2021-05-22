@@ -56,7 +56,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("test", ["currentTest", "disableTest"])
+    ...mapGetters("test", ["disableTest"])
   }
 };
 </script>
