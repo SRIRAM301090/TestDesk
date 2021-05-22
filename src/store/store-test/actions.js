@@ -107,21 +107,41 @@ export function checkTestStatus({ commit }, benchId) {
       id: snapshot.key,
       updates: test
     };
+    commit("updateCurrentTest", payload);
+
     const updates = payload.updates;
     if (updates.command === "self-test" && updates.status === "finished") {
       Notify.create({ message: "Self test passed", type: "positive" });
     }
-    commit("updateCurrentTest", payload);
+
     if (updates.command === "start-test" && updates.status === "finished") {
       Notify.create({ message: "All tests finished", type: "positive" });
     }
-    if (updates.command === "start-test" && updates.result) {
-      const testIds = Object.keys(updates.result);
-      const latestTest = testIds[testIds.length - 1];
-      const testResult = updates.result[latestTest].status;
-      const type = testResult === "Passed" ? "positive" : "negative";
+
+    if (updates.command === "start-test" && updates.result && updates.status !== "finished") {
+      const testResults = [];
+      Object.keys(updates.result).forEach(key =>
+        testResults.push({
+          name: key,
+          results: updates.result[key]
+        })
+      );
+
+      testResults.sort(function(a, b) {
+        var keyA = a.results.date,
+          keyB = b.results.date;
+        // Compare the 2 dates
+        if (keyA < keyB) return -1;
+        if (keyA > keyB) return 1;
+        return 0;
+      });
+
+      const recentTestId = testResults[testResults.length - 1].name
+      const recentTestResult = testResults[testResults.length - 1].results.status;
+      const type = recentTestResult === "Passed" ? "positive" : "negative";
+
       Notify.create({
-        message: `Test ID ${latestTest} : ${testResult}`,
+        message: `Test ID ${recentTestId} : ${recentTestResult}`,
         type
       });
     }

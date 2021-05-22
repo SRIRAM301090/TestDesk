@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "icons": "icongenie generate -i src/assets/AppIcon.png --skip-trim",
+    "dev": " quasar dev",
     "deploy": "quasar build && firebase deploy"
   },
   "dependencies": {
