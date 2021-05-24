@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="text-h6 q-mt-md">Test ID : {{ testId.testID }}</p>
+    <p class="text-h6 q-mt-md">Test ID : {{ testInfo.testID }}</p>
+    <p class="text-h6 q-mt-md">Status : {{ testInfo.status }}</p>
+
     <div class="q-mt-xl row">
       <div class=" col-2">
         <div class="q-mr-sm" style="max-width: 150px" v-if="testList.tests">
@@ -16,7 +18,11 @@
         </div>
       </div>
 
-      <div class="col" style="border: 5px solid #1976D2;" v-if="report">
+      <div
+        class="col"
+        style="border: 5px solid #1976D2;"
+        v-if="testInfo.command === 'start-test' && report"
+      >
         <embed type="text/html" :src="report" width="700" height="700" />
       </div>
     </div>
@@ -25,11 +31,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { format } from "quasar";
+
 export default {
   data() {
     return {
-      report: "",
-      showPrevTestOnLoad: false
+      report: ""
     };
   },
   computed: {
@@ -41,9 +48,13 @@ export default {
         return [];
       }
     },
-    testId() {
+    testInfo() {
       if (this.currentTest) {
-        return { testID: this.currentTest.id };
+        return {
+          testID: this.currentTest.id,
+          status: format.capitalize(this.currentTest.test.status),
+          command: this.currentTest.test.command
+        };
       } else {
         return "";
       }
@@ -57,6 +68,11 @@ export default {
       ) {
         this.report = this.currentTest.test.result[test].url;
       }
+    }
+  },
+  watch: {
+    currentTest(val) {
+      this.report = "";
     }
   }
 };

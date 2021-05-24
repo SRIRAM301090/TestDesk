@@ -25,7 +25,7 @@
 
           <q-tab-panel name="testBench">
             <test-bench-operations />
-            <test-list-reports />
+            <test-list-reports/>
           </q-tab-panel>
         </q-tab-panels>
       </div>
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       splitterModel: 20,
-      tab: "testCase"
+      tab: "testCase",
     };
   },
   components: {

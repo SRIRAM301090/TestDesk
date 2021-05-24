@@ -70,6 +70,7 @@ export function selectTestBench({ commit, dispatch }, benchId) {
 }
 
 export function sendCommand({ state }, payload) {
+
   const refDB = firebaseRealTimeDB.ref(`/bench/${payload.testBench}/${uid()}`);
   const user = firebaseAuth.currentUser.uid;
 

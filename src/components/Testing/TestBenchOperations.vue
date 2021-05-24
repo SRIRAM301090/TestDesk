@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-mt-md" style="max-width: 450px" v-if="!disableTest">
+  <div class="row q-mt-md" style="max-width: 450px">
     <q-select
       class="col"
       dense
@@ -19,6 +19,7 @@
       :disable="!testBench"
     />
     <q-btn
+      v-if="!disableTest"
       dense
       style="width: 70px"
       color="primary"
@@ -40,13 +41,22 @@ export default {
       tab: "testresult",
       testBench: null,
       testCommand: null,
-      bench: ["CHE7-L26526", "CHE7-W10142"],
-      command: ["self-test", "start-test"],
+      bench: ["CHE7-L26526", "CHE7-W30262"],
+      command: ["self-test", "start-test"]
     };
   },
   methods: {
     ...mapActions("test", ["sendCommand", "selectTestBench"]),
     submit() {
+      if (this.testCommand === "start-test") {
+        if (!this.tests.length) {
+          this.$q.dialog({
+            title: "Alert",
+            message: "TestCase Id not selected for Test Execution."
+          });
+          return;
+        }
+      }
       this.sendCommand({
         testBench: this.testBench,
         testCommand: this.testCommand
@@ -54,7 +64,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("test", ["disableTest"])
+    ...mapGetters("test", ["disableTest", "tests"])
   }
 };
 </script>
