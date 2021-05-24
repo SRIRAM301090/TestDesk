@@ -209,7 +209,7 @@ export default {
 <style lang="sass" scoped>
 .render-html
     @media (max-width: $breakpoint-xs-max)
-        width:300px
+        width:350px
     @media (min-width: $breakpoint-md-min)
         width:1024px
 </style>

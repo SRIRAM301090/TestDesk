@@ -12,8 +12,15 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title class="absolute-center">
-          TestDesk
+        <q-toolbar-title>
+          <span class="absolute-center">
+            <q-btn to="/" flat no-caps size="1.5rem">
+              <q-avatar size="3rem">
+                <img src="~assets/Iconheader.png" />
+              </q-avatar>
+              <span class="q-ml-sm">TestDesk</span>
+            </q-btn>
+          </span>
         </q-toolbar-title>
 
         <q-btn
@@ -40,19 +47,19 @@
       <q-tabs v-model="tab" no-caps dense>
         <q-route-tab
           name="reports"
-          to="reports"
+          to="/reports"
           icon="summarize"
           label="Reports"
         />
         <q-route-tab
           name="keywords"
-          to="keywords"
+          to="/keywords"
           icon="code"
           label="Keywords"
         />
         <q-route-tab
           name="settings"
-          to="settings"
+          to="/settings"
           icon="settings"
           label="Settings"
         />

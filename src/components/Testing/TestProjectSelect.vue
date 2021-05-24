@@ -1,5 +1,5 @@
 <template>
-  <div class= "row q-mt-md" style="max-width: 450px">
+  <div class="row q-mt-md" style="max-width: 450px">
     <q-select
       dense
       outlined
@@ -40,15 +40,19 @@ export default {
       selectedProjectVariant: ""
     };
   },
-  computed: { ...mapGetters("test", ["projects", "projectVariants"]) },
+  computed: {
+    ...mapGetters("test", ["projects", "projectVariants"])
+  },
   methods: {
     ...mapActions("test", [
       "getProjectLists",
       "setUserSelectedProject",
-      "getTestCase"
+      "getTestCase",
+      "userSelectedTests"
     ]),
     loadTestCase() {
       if (this.selectedProject && this.selectedProjectVariant) {
+        this.userSelectedTests([]);
         this.getTestCase({
           project: this.selectedProject,
           projectVariant: this.selectedProjectVariant

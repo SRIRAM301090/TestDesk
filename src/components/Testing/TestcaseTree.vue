@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
@@ -34,6 +34,7 @@ export default {
   },
   computed: {
     ...mapGetters("test", ["testCases", "showTestCase"]),
+    ...mapState("test", ["userSelectedProject"]),
     displayTest() {
       if (this.showTestCase) {
         return this.showTestCase.TestProcedure;
@@ -66,9 +67,14 @@ export default {
         this.setSelectedTest(this.selectedTest);
       }
     },
-    ticked(val){
-      if(val) {
+    ticked(val) {
+      if (val) {
         this.userSelectedTests(val);
+      }
+    },
+    testCases(val) {
+      if (val) {
+        this.ticked = [];
       }
     }
   }

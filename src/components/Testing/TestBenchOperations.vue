@@ -42,13 +42,11 @@ export default {
       testCommand: null,
       bench: ["CHE7-L26526", "CHE7-W10142"],
       command: ["self-test", "start-test"],
-      ignorePrevious: false
     };
   },
   methods: {
     ...mapActions("test", ["sendCommand", "selectTestBench"]),
     submit() {
-      this.ignorePrevious = true;
       this.sendCommand({
         testBench: this.testBench,
         testCommand: this.testCommand

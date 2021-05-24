@@ -66,7 +66,7 @@ export default {
           id: uid(),
           type: "Delay",
           page: "wait",
-          lists: ["Wait.Sec", "Wait.mSec"]
+          lists: ["Wait.mSec", "Wait.Sec"]
         }
       ]
     };

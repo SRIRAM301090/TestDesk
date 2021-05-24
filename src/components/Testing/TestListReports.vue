@@ -28,7 +28,8 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      report: ""
+      report: "",
+      showPrevTestOnLoad: false
     };
   },
   computed: {
@@ -44,14 +45,16 @@ export default {
       if (this.currentTest) {
         return { testID: this.currentTest.id };
       } else {
-        return [];
+        return "";
       }
     }
   },
   methods: {
     getReport(test) {
-      console.log(test);
-      if (this.currentTest.test.result && test in this.currentTest.test.result) {
+      if (
+        this.currentTest.test.result &&
+        test in this.currentTest.test.result
+      ) {
         this.report = this.currentTest.test.result[test].url;
       }
     }
